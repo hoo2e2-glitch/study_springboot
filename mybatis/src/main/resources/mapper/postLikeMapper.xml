@@ -8,11 +8,15 @@
         VALUES(SEQ_POST_LIKE.NEXTVAL, #{postId}, #{memberId})
     </insert>
 
+
+
     <!-- 좋아요 취소 delete  -->
     <delete id="deleteWithPostLike" parameterType="Long">
         DELETE FROM TBL_POST_LIKE
         WHERE ID = #{id}
     </delete>
+
+
 
 
 

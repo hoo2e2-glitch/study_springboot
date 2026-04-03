@@ -121,6 +121,9 @@
         WHERE ID = #{id}
     </update>
 
+
+
+
     <!-- 6. 게시글 삭제 -->
     <delete id="delete" parameterType="Long">
         DELETE FROM TBL_POST
