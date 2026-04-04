@@ -63,7 +63,7 @@ public class postMapperTest {
 
     @Test
     public void deleteTest(){
-        postMapper.delete(2L);
+        postMapper.delete(4L);
     }
 
     @Test
@@ -172,8 +172,9 @@ public class postMapperTest {
     @Test
     public void deleteWithPostLikeTest(){
 
-        postLikeMapper.deleteWithPostLike(43l);
+        postLikeMapper.deleteWithPostLike(43L);
     }
+
 
 
 

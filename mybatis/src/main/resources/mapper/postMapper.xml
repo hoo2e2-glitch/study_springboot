@@ -120,10 +120,6 @@
         SET POST_READ_COUNT = POST_READ_COUNT + 1
         WHERE ID = #{id}
     </update>
-
-
-
-
     <!-- 6. 게시글 삭제 -->
     <delete id="delete" parameterType="Long">
         DELETE FROM TBL_POST
