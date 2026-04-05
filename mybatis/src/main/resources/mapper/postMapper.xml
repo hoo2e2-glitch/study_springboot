@@ -1,129 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 주소 확인하기-->
 <mapper namespace="com.app.mybatis.mapper.PostMapper">
-    <!-- 1. 게시글 추가 -->
+     <!--게시글 추가-->
     <insert id="insert" parameterType="PostVO">
         INSERT INTO TBL_POST(ID, POST_TITLE, POST_CONTENT, MEMBER_ID)
-        VALUES (SEQ_POST.NEXTVAL, #{postTitle}, #{postContent}, #{memberId})
+        VALUES (SEQ_MEMBER.NEXTVAL, #{postTitle}, #{postContent}, #{memberId})
     </insert>
-
-    <!-- 2. 좋아요 게시글/게시글 전체 조회 -->
-    <select id="selectAll" parameterType="Long" resultType="PostDTO">
+    <!--게시글 전체조회-->
+    <select id="selectAll" resultType="PostDTO">
         SELECT
             TBP.ID, TBP.POST_TITLE, TBP.POST_CONTENT, TBP.MEMBER_ID, TBP.POST_READ_COUNT,
-            TBM.MEMBER_EMAIL, TBM.MEMBER_NAME,
-            (
-                SELECT COUNT(*)
-                FROM TBL_POST_LIKE
-                WHERE POST_ID = TBP.ID
-            ) POST_LIKE_COUNT,
-            CASE
-                WHEN TBL.ID IS NULL
-                    THEN 0
-                    ELSE 1
-                END IS_LIKED
+            TBM.MEMBER_EMAIL, TBM.MEMBER_NAME
         FROM TBL_POST TBP
         JOIN TBL_MEMBER TBM
         ON TBP.MEMBER_ID = TBM.ID
-        LEFT JOIN TBL_POST_LIKE TBL
-        ON TBP.ID = TBL.POST_ID AND TBL.MEMBER_ID = #{id}
     </select>
-
-    <!-- 3. 게시글 단일 조회 -->
+    <!--게시글 단일조회-->
     <select id="select" parameterType="Long" resultType="PostDTO">
         SELECT
             TBP.ID, TBP.POST_TITLE, TBP.POST_CONTENT, TBP.MEMBER_ID, TBP.POST_READ_COUNT,
             TBM.MEMBER_EMAIL, TBM.MEMBER_NAME
         FROM TBL_POST TBP
-                 JOIN TBL_MEMBER TBM
-                      ON TBP.MEMBER_ID = TBM.ID
+        JOIN TBL_MEMBER TBM
+        ON TBP.MEMBER_ID = TBM.ID
         WHERE TBP.ID = #{id}
     </select>
-<!--    조회순, 최신순-->
-    <select id="selectAllWithOrder" parameterType="MAP" resultType="PostDTO">
-        SELECT TBP.ID, TBP.POST_TITLE, TBP.POST_CONTENT, TBP.POST_READ_COUNT,
-        TBP.MEMBER_ID, TBM.MEMBER_EMAIL, TBM.MEMBER_NAME
-        FROM TBL_POST TBP
-        JOIN TBL_MEMBER TBM
-        ON TBP.MEMBER_ID = TBM.ID
-        ORDER BY
-        <choose>
-            <when test="order.equals('popular'.toString())">
-                POST_READ_COUNT DESC
-            </when>
-            <otherwise>
-                ID DESC
-            </otherwise>
-        </choose>
-            OFFSET(#{cursor} - 1) * #{limit} ROWS
-             FETCH NEXT #{limit} ROWS ONLY
-    </select>
-
-<!--    토탈 게시글의 개수 조회-->
-    <select id="selectTotalPostCountAndPageCount" parameterType="int" resultType="PostCountDTO">
-        SELECT
-            (
-                SELECT COUNT(ID)
-                FROM TBL_POST
-            ) TOTAL_POST_COUNT,
-            (
-                SELECT COUNT(ID) / #{limit}
-                FROM TBL_POST
-            ) TOTAL_PAGE_COUNT
-        FROM DUAL
-    </select>
-
-<!--    keyword가 있으면,-->
-<!--    keyword에 해당하는 게시글의 제목 또는 게시글의 내용을 조회하고-->
-<!--    해당하는 데이터들을 화면으로 조회한다.-->
-<!--    keyword 없을 때에는 전체를 조회한다.-->
-<!--    동적 쿼리 실습-->
-    <select id="selectAllWithKeyword" parameterType="MAP" resultType="PostDTO">
-        SELECT TBP.ID, TBP.POST_TITLE, TBP.POST_CONTENT, TBP.MEMBER_ID, TBP.POST_READ_COUNT,
-               TBM.MEMBER_EMAIL, TBM.MEMBER_NAME,
-        (
-        SELECT COUNT (*)
-        FROM TBL_POST_LIKE
-        WHERE POST_ID = TBP.ID
-        ) POST_LIKE_COUNT
-        FROM TBL_POST TBP
-        JOIN TBL_MEMBER TBM
-        ON TBP.MEMBER_ID = TBM.ID
-<!--        동적 쿼리
-        if : 단일 조건문에 사용
-        <if test="'value' != 'value2'">
-            실행할 문장
-        </if>-->
-        <where>
-            <if test="keyword != null and keyword != ''">
-                (
-                TBP.POST_TITLE LIKE '%' || #{keyword} || '%'
-                OR TBP.POST_CONTENT LIKE '%' || #{keyword} || '%'
-                )
-            </if>
-        </where>
+    <!--최신순 조회-->
+    <select id="selectByDesc" resultType="PostVO">
+        SELECT ID, POST_TITLE, POST_CONTENT, MEMBER_ID, POST_READ_COUNT
+        FROM TBL_POST
         ORDER BY ID DESC
-        OFFSET(#{cursor} - 1) * #{limit} ROWS
-        FETCH NEXT #{limit} ROWS ONLY
     </select>
-
-    <!-- 4. 게시글 수정 -->
-    <update id="update" parameterType="PostVO">
-        UPDATE TBL_POST
-        SET POST_TITLE = #{postTitle}, POST_CONTENT = #{postContent}
-        WHERE ID = #{id}
-    </update>
-
-    <!-- 5. 조회수 증가 -->
+    <!--조회수 증가-->
     <update id="updatePostReadCount" parameterType="Long">
         UPDATE TBL_POST
         SET POST_READ_COUNT = POST_READ_COUNT + 1
         WHERE ID = #{id}
     </update>
-    <!-- 6. 게시글 삭제 -->
-    <delete id="delete" parameterType="Long">
-        DELETE FROM TBL_POST
-        WHERE ID = #{id}
-    </delete>
+    <!--게시글 수정-->
+
+    <!--게시글 삭제-->
+
 
 </mapper>

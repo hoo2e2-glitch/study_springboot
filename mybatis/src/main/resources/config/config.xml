@@ -10,10 +10,8 @@
         <!--vo-->
         <typeAlias type="com.app.mybatis.domain.vo.MemberVO" alias="MemberVO"></typeAlias>
         <typeAlias type="com.app.mybatis.domain.vo.PostVO" alias="PostVO"></typeAlias>
-        <typeAlias type="com.app.mybatis.domain.vo.PostLikeVO" alias="PostLikeVO"></typeAlias>
 
+        <!--dto-->
         <typeAlias type="com.app.mybatis.dto.PostDTO" alias="PostDTO"></typeAlias>
-        <typeAlias type="com.app.mybatis.dto.PostCountDTO" alias="PostCountDTO"></typeAlias>
-        <typeAlias type="com.app.mybatis.dto.PostResponseDTO" alias="PostResponseDTO"></typeAlias>
     </typeAliases>
 </configuration>
