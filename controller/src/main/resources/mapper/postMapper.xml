@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.controller.mapper.PostMapper">
+<!--    parameterType = DB에 보낼 값 타입
+        resultType = DB에서 받을 값 타입
+        -->
+<!--    조회는 받는값이 중요
+        SELECT 결과를 PostVO로 받겠다는 뜻-->
+    <!--전체 조회-->
+    <select id="selectAll" resultType="PostVO">
+        SELECT ID, POST_TITLE, POST_CONTENT, MEMBER_ID, POST_READ_COUNT
+        FROM TBL_POST
+        ORDER BY ID ASC
+    </select>
+    <!--단일 조회-->
+    <select id="select" parameterType="Long" resultType="PostVO">
+        SELECT ID, POST_TITLE, POST_CONTENT, MEMBER_ID, POST_READ_COUNT
+        FROM TBL_POST
+        WHERE ID = #{id}
+    </select>
+    <!--추가-->
+    <insert id="insert" parameterType="PostVO">
+        INSERT INTO TBL_POST
+        VALUES (SEQ_POST.NEXTVAL, #{postTitle}, #{postContent}, #{memberId}, #{postReadCount});
+    </insert>
+
+</mapper>

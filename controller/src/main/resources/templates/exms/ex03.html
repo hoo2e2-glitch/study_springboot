@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<!--//    홍길동/장보고/이순신 list에 담고-->
+<!--//    화면에 보낸 후 반복문으로 출력-->
+<!-- - th:each="변수 : ${list}" : 빠른 for문
+<div th:each="user : ${userList}">
+    <span th:text="${user.username}">username</span>
+    <span th:text="${user.age}">age</span>
+</div>-->
+<div th:each="name : ${nameList}">
+    <h1 th:text="${name}"></h1>
+</div>
+
+<ul>
+    <li th:each="name : ${nameList}" th:text="${name}"></li>
+</ul>
+
+
+</body>
+</html>
+
+
