@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.threetier.mapper.PostMapper">
+<!--    parameterType = DB에 보낼 값 타입
+        resultType = DB에서 받을 값 타입
+        -->
+<!--    조회는 받는값이 중요
+        SELECT 결과를 PostVO로 받겠다는 뜻-->
+    <!--전체 조회-->
+    <select id="selectAll" resultType="PostDTO">
+        SELECT
+            TBP.ID, TBP.POST_TITLE, TBP.POST_CONTENT, TBP.MEMBER_ID, TBP.POST_READ_COUNT,
+            TBM.MEMBER_EMAIL, TBM.MEMBER_NAME
+        FROM TBL_POST TBP
+        JOIN TBL_MEMBER TBM
+        ON TBP.MEMBER_ID = TBM.ID
+    </select>
+    <!--단일 조회-->
+    <select id="select" parameterType="Long" resultType="PostDTO">
+        SELECT
+            TBP.ID, TBP.POST_TITLE, TBP.POST_CONTENT, TBP.MEMBER_ID, TBP.POST_READ_COUNT,
+            TBM.MEMBER_EMAIL, TBM.MEMBER_NAME
+        FROM TBL_POST TBP
+        JOIN TBL_MEMBER TBM
+        ON TBP.MEMBER_ID = TBM.ID
+        WHERE TBP.ID = #{id}
+    </select>
+    <!--추가-->
+<!--    <insert id="insert" parameterType="PostVO">-->
+<!--        INSERT INTO TBL_POST-->
+<!--        VALUES (SEQ_POST.NEXTVAL, #{postTitle}, #{postContent}, #{memberId}, #{postReadCount});-->
+<!--    </insert>-->
+
+    <update id="update" parameterType="PostDTO">
+        UPDATE TBL_POST
+        SET POST_TITLE = #{postTitle}, POST_CONTENT = #{postContent}
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        DELETE FROM TBL_POST
+        WHERE ID =  #{id}
+    </delete>
+
+</mapper>

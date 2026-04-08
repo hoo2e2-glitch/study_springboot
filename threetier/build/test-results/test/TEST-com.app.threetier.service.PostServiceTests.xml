@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.app.threetier.service.PostServiceTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-04-08T10:36:20.700Z" hostname="DESKTOP-UL20Q5M" time="3.634">
+  <properties/>
+  <testcase name="getPostByIdTest()" classname="com.app.threetier.service.PostServiceTests" time="0.792">
+    <failure message="com.app.threetier.exception.PostException: Post Not Found" type="com.app.threetier.exception.PostException">com.app.threetier.exception.PostException: Post Not Found
+	at com.app.threetier.service.PostServiceImpl.lambda$getPost$0(PostServiceImpl.java:31)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.app.threetier.service.PostServiceImpl.getPost(PostServiceImpl.java:31)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at com.app.threetier.service.PostServiceImpl$$SpringCGLIB$$0.getPost(&lt;generated&gt;)
+	at com.app.threetier.service.PostServiceTests.getPostByIdTest(PostServiceTests.java:23)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+</failure>
+  </testcase>
+  <system-out><![CDATA[19:36:20.800 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.app.threetier.service.PostServiceTests]: PostServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:36:20.921 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.app.threetier.ThreetierApplication for test class com.app.threetier.service.PostServiceTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-04-08T19:36:21.349+09:00  INFO 23132 --- [    Test worker] c.a.threetier.service.PostServiceTests   : Starting PostServiceTests using Java 17.0.10 with PID 23132 (started by USER in D:\back_0900_phy\spring\workspace\threetier)
+2026-04-08T19:36:21.351+09:00  INFO 23132 --- [    Test worker] c.a.threetier.service.PostServiceTests   : No active profile set, falling back to 1 default profile: "default"
+2026-04-08T19:36:22.343+09:00  INFO 23132 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-08T19:36:22.677+09:00  INFO 23132 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@14d8e132
+2026-04-08T19:36:22.679+09:00  INFO 23132 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-08T19:36:23.472+09:00  INFO 23132 --- [    Test worker] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2026-04-08T19:36:23.520+09:00  INFO 23132 --- [    Test worker] c.a.threetier.service.PostServiceTests   : Started PostServiceTests in 2.461 seconds (process running for 3.457)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
