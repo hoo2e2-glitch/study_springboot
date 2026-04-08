@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>수정</title>
+</head>
+<body>
+<form action="/members/login" method="POST" >
+    <input type="text" name="memberEmail" value="memberEmail" placeholder="이메일">
+    <input type="password" name="memberPassword" value="memberPassword" placeholder="비밀번호">
+    <input type="text" name="memberName" value="memberName" placeholder="이름">
+    <button>수정완료</button>
+</form>
+
+</body>
+<script th:inline="javascript">
+    const isLogin = [[${login}]]
+    const inputs = document.querySelectorAll('input');
+    const buttons = document.querySelector('button')
+    const form = document.querySelector('form');
+
+
+    if(isLogin == true){
+        inputs.forEach(input => {
+            buttons.addEventListener('click', e => {
+                e.preventDefault();
+            })
+            form.submit();
+        })
+    }
+
+
+
+</script>
+
+
+
+</html>

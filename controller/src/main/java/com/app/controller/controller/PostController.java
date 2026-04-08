@@ -1,5 +1,6 @@
 package com.app.controller.controller;
 
+import com.app.controller.domain.dto.PostDTO;
 import com.app.controller.domain.vo.MemberVO;
 import com.app.controller.domain.vo.PostVO;
 import com.app.controller.mapper.MemberMapper;
@@ -27,15 +28,16 @@ public class PostController {
     private final PostMapper postMapper;
     private final MemberMapper memberMapper;
 
+    // 메인서비스
     @GetMapping("list")
-    public String goToPosts(@ModelAttribute PostVO postVO, Model model) {
-        if(postVO.getId() != null) {
-            Optional<PostVO> post = postMapper.select(postVO.getId());
-            if(post.isPresent()) {
-                model.addAttribute("post", post.get());
-                return  "posts/detail";
-            }
-        }
+    public String goToPosts(@ModelAttribute PostDTO postDTO, Model model) {
+//        if(postDTO.getId() != null) {
+//            Optional<PostDTO> post = postMapper.select(postDTO.getId());
+//            if(post.isPresent()) {
+//                model.addAttribute("post", post.get());
+//                return  "posts/detail";
+//            }
+//        }
 
         model.addAttribute("posts", postMapper.selectAll());
         return "posts/list";
