@@ -5,13 +5,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Data
 @Component
+@Data
 public class PostResponseDTO {
 
     private Long totalPageCount;
     private Long totalPostCount;
     private List<PostDTO> posts;
-
 
 }

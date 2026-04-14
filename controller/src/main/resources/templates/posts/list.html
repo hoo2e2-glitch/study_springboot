@@ -9,22 +9,31 @@
 </head>
 <body>
 <!--게시판리스트 화면출력하기-->
-<table border="1">
-    <tr>
-        <th>제목</th>
-        <th>내용</th>
-        <th>작성자</th>
-        <th>조회수</th>
-    </tr>
-    <tr th:each="postList : ${posts}">
-        <td>
-            <a th:href="@{/posts/list(id=${postList.id})}" th:text="${postList.postTitle}"></a>
-        </td>
-        <td th:text="${postList.postContent}"></td>
-        <td th:text="${postList.memberId}"></td>
-        <td th:text="${postList.postReadCount}"></td>
-    </tr>
-</table>
+    <th:block th:if="${#list.size(posts) != 0}">
+        <table border="1">
+            <tr>
+                <th>내용</th>
+                <th>작성자</th>
+                <th>조회수</th>
+            </tr>
+            <th:each="postList : ${posts}">
+                <tr th:object="${postList}">
+                    <td th:text="${id}"></td>
+                    <td th:text="${postTitle}"></td>
+                    <td th:text="${postContent}"></td>
+                    <td th:text="${postReadCount}"></td>
+                </tr>
+        </table>
+    </th:block>
+
+
+
+
+<!--        <td>-->
+<!--            <a th:href="@{/posts/list(id=${postList.id})}" th:text="${postList.postTitle}"></a>-->
+<!--        </td>-->
+<!--        <td th:text="${postList.memberId}"></td>-->
+<!--        <td th:text="${postList.postReadCount}"></td>-->
 <form th:action="@{/posts/list}" method="get" th:object="${postVO}">
     <input type="text" th:field="*{id}" placeholder="아이디">
     <button>검색</button>

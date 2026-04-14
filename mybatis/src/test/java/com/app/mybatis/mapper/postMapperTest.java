@@ -119,7 +119,7 @@ public class postMapperTest {
 
 
 
-//    게시판 목록 조회
+    //    게시판 목록 조회
     @Test
     public void selectTotalPostCountAndPageCount2(){
         int limit = 10;
@@ -129,8 +129,8 @@ public class postMapperTest {
         orders.put("cursor", 1);
         orders.put("limit", 5);
 
-       List<PostDTO> posts = postMapper.selectAllWithOrder(orders);
-       PostCountDTO postCountDTO = postMapper.selectTotalPostCountAndPageCount(limit);
+        List<PostDTO> posts = postMapper.selectAllWithOrder(orders);
+        PostCountDTO postCountDTO = postMapper.selectTotalPostCountAndPageCount(limit);
 
         /* 최종 응답 */
         PostResponseDTO postResponseDTO = new PostResponseDTO();

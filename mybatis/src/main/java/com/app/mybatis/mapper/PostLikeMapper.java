@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface PostLikeMapper {
+
     public void insert(PostLikeVO postLikeVO);
     public void deleteWithPostLike(Long id);
-
 }

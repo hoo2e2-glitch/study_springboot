@@ -9,8 +9,4 @@ public class PostKeywordDTO {
 
     private Long keywordPostTitle;
     private Long keywordPostContent;
-
-
-
-
 }

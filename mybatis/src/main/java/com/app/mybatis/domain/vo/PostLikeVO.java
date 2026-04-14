@@ -10,4 +10,6 @@ public class PostLikeVO {
     private Long id;
     private Long postId;
     private Long memberId;
+
 }
+

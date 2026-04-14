@@ -8,9 +8,9 @@ import java.util.Optional;
 
 @Mapper
 public interface MemberMapper {
+    public void insert(MemberVO memberVO);
     public List<MemberVO> selectAll();
     public Optional<MemberVO> select(Long id);
-    public void insert(MemberVO memberVO);
     public void update(MemberVO memberVO);
     public void delete(MemberVO memberVO);
 }

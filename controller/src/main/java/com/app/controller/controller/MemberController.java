@@ -31,10 +31,11 @@ public class MemberController {
     //    의존성주입
     private final HttpSession session;
 
-    //   회원가입
+    //   회원가입 - 화면
     @GetMapping("join")
     public void goToJoin(MemberVO memberVO) {;}
 
+    // 회원가입 처리
     //  요청-post-응답
 //  값을 받아서 -> DB에 저장 -> 응답
     @PostMapping("join")
@@ -46,11 +47,10 @@ public class MemberController {
 
     //    로그인 실습
     //    로그인이 완료되면 members/my-page로 응답
+    // 로그인 화면
     @GetMapping("login")
     public void goToLogin(MemberVO memberVO) {;}
 
-    //    로그인 실습
-//    로그인이 완료되면 /members/my-page로 응답
 //    1. 쿼리 작성
 //    select -> 이메일과, 비밀번호 검증 후 회원을 조회하는 쿼리
 //    2. Mapper 작성
@@ -62,12 +62,13 @@ public class MemberController {
 //    flash 영역을 사라지게된다. 즉 new Request() 객체를 만나면 사라진다
 //    redirectAttributes.addFlashAttribute("key", value): 컨트롤러에서 사용이 가능
 //     redirectAttributes.addAttribute("isLogin", true): 컨트롤러에서 사용이 불가능
+    // 로그인 처리
     @PostMapping("login")
     public RedirectView login(MemberVO memberVO, RedirectAttributes redirectAttributes) {
 
-        Optional<MemberVO> foundMember = memberMapper.select(memberVO);
-        if (foundMember.isPresent()) {
-            session.setAttribute("member", foundMember.get());
+        Optional<MemberVO> found = memberMapper.select(memberVO);
+        if(found.isPresent()) {
+            session.setAttribute("member", found.get());
             return new RedirectView("/members/my-page");
         }
 
@@ -84,19 +85,22 @@ public class MemberController {
 //    9. Session에 회원 정보를 주입
 //    10. 리다이렉트 처리
 
+    // 마이페이지 화면
     @GetMapping("my-page")
     public void goToMyPage() {;}
 
-
+    // 수정화면
     @GetMapping("update")
     public void goToUpdate(Model model) {
-        model.addAttribute("member", session.getAttribute("member"));
+//        model.addAttribute("member", session.getAttribute("member"));
     }
 
-
+    // 수정처리
     @PostMapping("update")
     public RedirectView update(MemberVO memberVO) {
+//        DB 수정 → 최신 회원 재조회 → 세션 갱신 → 마이페이지 리다이렉트.
         memberMapper.update(memberVO);
+
         Optional<MemberVO> foundMember = memberMapper.select(memberVO);
         if (foundMember.isPresent()) {
             session.setAttribute("member", foundMember.get());

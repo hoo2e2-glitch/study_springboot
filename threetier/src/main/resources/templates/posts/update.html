@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>수정</title>
+</head>
+<body>
+
+    <form th:action="@{/posts/update}" method="post" th:object="${post}">
+        <input type="hidden" th:field="*{id}">
+        <p>제목</p>
+        <input type="text" th:field="*{postTitle}">
+<!--       th:field="*{postTitle}" -> <input type="text" id="postTitle" name="postTitle" value="기존제목">-->
+        <p>내용</p>
+        <input type="text" th:field="*{postContent}">
+        <button type="submit">수정완료</button>
+        <a th:href="@{/post/read(id=*{id})}"><button >수정취소</button></a>
+    </form>
+    <a th:href="@{/posts/list}"><button >돌아가기</button></a>
+</body>
+</html>
+

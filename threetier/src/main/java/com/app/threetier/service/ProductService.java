@@ -1,0 +1,18 @@
+package com.app.threetier.service;
+
+
+// 서비스 원칙
+// 1. 1개의 서비스에는 여러개의 쿼리가 발생한다. - 트랜잭션 관리필요
+// 2. 구현체의 분리를 통해 독립적으로 보다 자유로운 확장성을 보장하고(틀만듦),
+// 유지보수를 증가시키기 위해 인터페이스로 설계한다.
+// 3. 서비스에는 해당 서비스의 이름이 정확히 드러나야 한다.
+
+
+import com.app.threetier.domain.vo.ProductVO;
+
+public interface ProductService {
+    public void insertProduct(ProductVO productVO);
+
+
+
+}

@@ -1,5 +1,6 @@
 package com.app.controller.mapper;
 
+import com.app.controller.domain.dto.PostDTO;
 import com.app.controller.domain.vo.MemberVO;
 import com.app.controller.domain.vo.PostVO;
 import lombok.extern.slf4j.Slf4j;
@@ -20,14 +21,14 @@ public class postMapperTest {
 
     @Test
     public void selectAllTest(){
-        List<PostVO> posts = postMapper.selectAll();
+        List<PostDTO> posts = postMapper.selectAll();
 //        forEach는 “가져온 목록 하나씩 확인하기”
         posts.forEach(post -> log.info("{}",post));
     }
 
     @Test
     public void selectTest(){
-        Optional<PostVO> posts = postMapper.select(2L);
+        Optional<PostDTO> posts = postMapper.select(2L);
         posts.ifPresent(post -> log.info("{}",post));
 
     }
