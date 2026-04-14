@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.threetier.mapper.StudentMapper">
+
+<!--    학생 추가-->
+    <insert id="insert" parameterType="StudentVO">
+        <selectKey keyProperty="id" order="BEFORE" resultType="Long">
+            SELECT SEQ_STUDENT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_STUDENT
+        VALUES (#{id}, #{studentName}, #{kor}, #{eng}, #{math})
+    </insert>
+
+<!--    전체 조회-->
+    <select id="selectAll"  resultType="StudentDTO">
+        SELECT ID, STUDENT_NAME, KOR, ENG, MATH, TOTAL, AVER
+        FROM VIEW_STUDENT
+    </select>
+
+<!--    단일조회-->
+    <select id="select" parameterType="Long" resultType="StudentDTO">
+        SELECT ID, STUDENT_NAME, KOR, ENG, MATH, TOTAL, AVER
+        FROM VIEW_STUDENT
+        WHERE ID = #{id}
+    </select>
+
+<!--    업데이트-->
+    <update id="update" parameterType="StudentVO">
+        UPDATE TBL_STUDENT
+        SET STUDENT_NAME = #{studentName}
+        WHERE ID = #{id}
+    </update>
+
+<!--    삭제-->
+    <delete id="delete" parameterType="Long">
+        DELETE FROM TBL_STUDENT
+        WHERE ID = #{id}
+    </delete>
+
+
+</mapper>
+
+        <!--    order="BEFORE" → INSERT 실행 전에 먼저 실행
+                SEQ_STUDENT.NEXTVAL → 시퀀스에서 다음 번호 가져오기
+                keyProperty="id" → 가져온 번호를 StudentVO.id 에 담기
+        -->

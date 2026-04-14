@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.threetier.mapper.ProductMapper">
+<!--    parameterType = DB에 보낼 값 타입
+        resultType = DB에서 받을 값 타입
+        -->
+<!--    조회는 받는값이 중요
+        SELECT 결과를 PostVO로 받겠다는 뜻-->
+    <!--추가-->
+    <!--시크릿키사용해서 빠르게 전환 가능/ 넣기-->
+    <insert id="insert" parameterType="ProductVO">
+        <selectKey keyProperty="id" order="BEFORE" resultType="Long">
+            SELECT SEQ_PRODUCT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_PRODUCT
+        VALUES (#{id}, #{productName}, #{productPrice}, #{productStock}, #{productBrand})
+    </insert>
+
+<!--    <select id="selectAll" resultType="ProductVO">-->
+<!--        SELECT ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_STOCK, PRODUCT_BRAND-->
+<!--        FROM TBL_PRODUCT-->
+<!--    </select>-->
+
+
+</mapper>

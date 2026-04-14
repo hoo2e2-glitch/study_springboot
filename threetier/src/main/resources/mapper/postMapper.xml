@@ -31,9 +31,15 @@
 <!--        VALUES (SEQ_POST.NEXTVAL, #{postTitle}, #{postContent}, #{memberId}, #{postReadCount});-->
 <!--    </insert>-->
 
-    <update id="update" parameterType="PostDTO">
+    <update id="update" parameterType="PostVO">
         UPDATE TBL_POST
         SET POST_TITLE = #{postTitle}, POST_CONTENT = #{postContent}
+        WHERE ID = #{id}
+    </update>
+
+    <update id="updateReadCount" parameterType="Long">
+        UPDATE TBL_POST
+        SET POST_READ_COUNT = POST_READ_COUNT + 1
         WHERE ID = #{id}
     </update>
 

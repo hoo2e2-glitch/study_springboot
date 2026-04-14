@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>결과</title>
+</head>
+<body>
+    <p th:text="'국어 : ' + @{kor}"></p>
+    <p th:text="'영어 : ' + @{eng}"></p>
+    <p th:text="'수학 : ' + @{math}"></p>
+    <p th:text="'총점 : ' + @{total}"></p>
+    <p th:text="'평균 : ' + @{ave}"></p>
+
+</body>
+</html>
+

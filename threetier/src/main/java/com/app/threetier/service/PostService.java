@@ -8,13 +8,15 @@ package com.app.threetier.service;
 // 3. 서비스에는 해당 서비스의 이름이 정확히 드러나야 한다.
 
 import com.app.threetier.domain.dto.PostDTO;
+import com.app.threetier.domain.vo.PostVO;
 
 import java.util.List;
 
 public interface PostService {
     public List<PostDTO> getPosts();
     public PostDTO getPost(Long id);
-    public void updatePost(PostDTO postDTO);
+    public void updatePost(PostVO postVO);
+    public void increaseReadCount(Long id);
     public void deletePost(Long id);
 
 

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>학생 등록 / 점수 입력</title>
+</head>
+<body>
+<!--th:object="${studentVO}"> 사용하려면 controller에서 먼저 studentVO를 model넣기-->
+<form th:action="@{/students/result}" method="post" th:object="${studentVO}">
+    <p>이름: <input type="text" th:field="*{studentName}"></p>
+    <p>국어: <input type="number" th:field="*{kor}"></p>
+    <p>영어: <input type="number" th:field="*{eng}"></p>
+    <p>수학: <input type="number" th:field="*{math}"></p>
+    <button>등록 </button>
+<!--    <a href="/tasks/result"><button>점수 입력</button></a>-->
+</form>
+
+</body>
+</html>
+

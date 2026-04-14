@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 // getter/setter
 @Data
 public class MemberVO {
+
     private Long id;
     private String memberEmail;
     private String memberPassword;

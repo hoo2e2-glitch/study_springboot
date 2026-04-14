@@ -12,5 +12,5 @@ public interface MemberMapper {
     public List<MemberVO> selectAll();
     public Optional<MemberVO> select(Long id);
     public void update(MemberVO memberVO);
-    public void delete(Long id);
+    public void delete(MemberVO memberVO);
 }

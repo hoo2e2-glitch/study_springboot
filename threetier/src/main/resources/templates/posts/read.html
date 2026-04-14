@@ -8,15 +8,17 @@
     <title>상세목록조회</title>
 </head>
 <body>
-
     <th:block th:object="${post}">
             <p th:text="*{postTitle}"></p>
             <p th:text="*{postContent}"></p>
             <p th:text="*{memberName}"></p>
-        <a th:href="@{/posts/update(id=*{id})}"><button >수정하기</button></a>
+            <p th:text="'조회수:' + *{postReadCount}"></p>
+            <a th:href="@{/posts/update(id=*{id})}"><button >수정하기</button></a>
+<!--            <a th:href="@{/posts/delete-ok(id=*{id})}"><button >삭제</button></a>-->
 <!--        POST로 삭제하면?-->
 <!--        → URL에 id 안 보임-->
 <!--        → form 통해서만 전송 가능 → 더 안전!-->
+
         <form th:action="@{/posts/delete}" method="post">
             <input type="hidden" name="id" th:value="*{id}">
             <button >삭제하기</button>

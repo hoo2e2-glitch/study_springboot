@@ -18,9 +18,16 @@ class PostServiceTests {
         log.info("post {}:", postService.getPosts());
     }
 
+//    @Test
+//    public void getPostByIdTest() {
+//        log.info("post {}:", postService.getPost(6L));
+//    }
+
     @Test
-    public void getPostByIdTest() {
-        log.info("post {}:", postService.getPost(6L));
+    public void deletePostByIdTest() {
+        postService.deletePost(7L);
     }
+
+
 
 }

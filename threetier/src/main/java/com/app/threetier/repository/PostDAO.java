@@ -23,10 +23,15 @@ public class PostDAO {
     public Optional<PostDTO> findById(Long id){
         return postMapper.select(id);
     }
-    public void update(PostDTO postDTO) {
-        postMapper.update(postDTO);
+    public void update(PostVO postVO) {
+        postMapper.update(postVO);
     }
-    public  void delete(Long id) {
+
+    public void updateReadCount(Long id) {
+        postMapper.updateReadCount(id);
+    }
+
+    public void delete(Long id) {
         postMapper.delete(id);
 
     }

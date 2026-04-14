@@ -11,12 +11,15 @@
 
     <form th:action="@{/posts/update}" method="post" th:object="${post}">
         <input type="hidden" th:field="*{id}">
+        <p>제목</p>
         <input type="text" th:field="*{postTitle}">
 <!--       th:field="*{postTitle}" -> <input type="text" id="postTitle" name="postTitle" value="기존제목">-->
+        <p>내용</p>
         <input type="text" th:field="*{postContent}">
         <button type="submit">수정완료</button>
+        <a th:href="@{/post/read(id=*{id})}"><button >수정취소</button></a>
     </form>
-<!--<a th:href="@{/posts/list}"><button >돌아가기</button></a>-->
+    <a th:href="@{/posts/list}"><button >돌아가기</button></a>
 </body>
 </html>
 
