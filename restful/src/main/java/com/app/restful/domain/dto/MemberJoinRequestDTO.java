@@ -14,14 +14,5 @@ public class MemberJoinRequestDTO {
     private  String memberPassword;
     private String memberName;
 
-    // 정적
-//    public static MemberVO from(MemberJoinRequestDTO memberJoinRequestDTO) {
-//        MemberVO memberVO = new MemberVO();
-//
-//        memberVO.setMemberEmail(memberJoinRequestDTO.getMemberEmail());
-//        memberVO.setMemberPassword(memberJoinRequestDTO.getMemberPassword());
-//        memberVO.setMemberName(memberJoinRequestDTO.getMemberName());
-//        return memberVO;
-//    }
 
 }

@@ -1,6 +1,6 @@
 package com.app.restful.api;
 
-import com.app.restful.domain.dto.MemberDTO;
+import com.app.restful.domain.dto.MemberResponseDTO;
 import com.app.restful.domain.dto.MemberJoinRequestDTO;
 import com.app.restful.domain.dto.MemberUpdateRequestDTO;
 import com.app.restful.domain.vo.MemberVO;
@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 // 서비스호출
 // 리턴값을 JSON으로 처리
@@ -29,7 +28,7 @@ public class MemberAPI {
     @Operation(summary = "회원목록조회 서비스", description = "회원 목록을 조회해서 리스트로 변환하는 서비스")
     @ApiResponse(responseCode = "200", description = "회원 목록을 조회해")
     @GetMapping("")
-    public List<MemberDTO> getMembers() {
+    public List<MemberResponseDTO> getMembers() {
         return memberService.getMemberList();
     }
 
@@ -44,9 +43,8 @@ public class MemberAPI {
             example = "1",
             schema = @Schema(type = "number") // 스키마 타입
     )
-
     @GetMapping("/{id}")
-    public MemberDTO getMemberInfo(@PathVariable Long id){
+    public MemberResponseDTO getMemberInfo(@PathVariable Long id){
         return  null;
     }
 
@@ -64,7 +62,7 @@ public class MemberAPI {
         @PostMapping("/login")
         @Operation(summary = "로그인 서비스", description = "아이디 비밀번호 검증 -> 서비스")
         @ApiResponse(responseCode = "200", description = "로그인 성공")
-        public MemberDTO login(@RequestBody MemberVO memberVO){
+        public MemberResponseDTO login(@RequestBody MemberVO memberVO){
             return memberService.login(memberVO);
         }
 

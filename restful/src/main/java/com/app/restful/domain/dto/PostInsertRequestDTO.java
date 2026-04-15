@@ -1,18 +1,14 @@
-package com.app.restful.domain.vo;
+package com.app.restful.domain.dto;
 
-import com.app.restful.domain.dto.PostInsertRequestDTO;
-import com.app.restful.domain.dto.PostUpdateRequestDTO;
+import com.app.restful.domain.vo.PostVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
-
 @Component
 @Data
-//2. VO 또는 DTO를 설계
-public class PostVO implements Serializable {
+public class PostInsertRequestDTO {
+    // 게시판 등록 dto
 
-    private Long id;
     private String postTitle;
     private String postContent;
     private Long memberId;
@@ -26,14 +22,5 @@ public class PostVO implements Serializable {
         postVO.setMemberId(postInsertRequestDTO.getMemberId());
         postVO.setPostReadCount(postInsertRequestDTO.getPostReadCount());
         return postVO;
-    }
-
-    public static PostVO from(PostUpdateRequestDTO postUpdateRequestDTO){
-        PostVO postVO = new PostVO();
-
-        postVO.setId(postUpdateRequestDTO.getId());
-        postVO.setPostTitle(postUpdateRequestDTO.getPostTitle());
-        postVO.setPostContent(postUpdateRequestDTO.getPostContent());
-        return  postVO;
     }
 }

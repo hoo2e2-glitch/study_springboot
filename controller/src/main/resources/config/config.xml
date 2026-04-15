@@ -11,7 +11,9 @@
       <typeAlias type="com.app.controller.domain.vo.MemberVO" alias="MemberVO"></typeAlias>
       <typeAlias type="com.app.controller.domain.vo.PostVO" alias="PostVO"></typeAlias>
 
-        <typeAlias type="com.app.controller.domain.dto.PostDTO" alias="PostDTO"></typeAlias>
+        <!--dto-->
+      <typeAlias type="com.app.controller.domain.dto.PostDTO" alias="PostDTO"></typeAlias>
+      <typeAlias type="com.app.controller.domain.dto.PostUpdateDTO" alias="PostUpdateDTO"></typeAlias>
 
 <!--        <typeAlias type="com.app.mybatis.dto.PostDTO" alias="PostDTO"></typeAlias>-->
     </typeAliases>

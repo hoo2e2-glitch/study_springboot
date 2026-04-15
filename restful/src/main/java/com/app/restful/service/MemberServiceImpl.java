@@ -1,6 +1,6 @@
 package com.app.restful.service;
 
-import com.app.restful.domain.dto.MemberDTO;
+import com.app.restful.domain.dto.MemberResponseDTO;
 import com.app.restful.domain.dto.MemberJoinRequestDTO;
 import com.app.restful.domain.dto.MemberUpdateRequestDTO;
 import com.app.restful.domain.vo.MemberVO;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(rollbackFor =  Exception.class)
@@ -46,37 +45,37 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     // Optional 벗겨서 리턴
-    public MemberDTO login(MemberVO memberVO) {
+    public MemberResponseDTO login(MemberVO memberVO) {
         return memberDAO.findByEmail(memberVO)
-                .map(MemberDTO::from)
+                .map(MemberResponseDTO::from)
                 .orElseThrow(() -> {
                     throw new MemberException("아이디 또는 비밀번호를 확인해주세요.");
                 });
     }
 
     @Override
-    public MemberDTO getMemberInfo(Long id) {
+    public MemberResponseDTO getMemberInfo(Long id) {
         // 회원 비밀번호 제거
 //        MemberVO foundmember = memberDAO.findById(id);
-//        MemberDTO memberDTO = new MemberDTO();
+//        MemberResponseDTO memberDTO = new MemberResponseDTO();
 //        memberDTO.setId(foundmember.getId());
 
         return memberDAO.findById(id)
-                .map(MemberDTO::from)
+                .map(MemberResponseDTO::from)
                 .orElseThrow(() -> {
                     throw new MemberException("아이디 또는 비밀번호를 확인해주세요.");
                 });
     }
 
     @Override
-    public List<MemberDTO> getMemberList() {
-        return memberDAO.findAll().stream().map(MemberDTO::from).toList();
+    public List<MemberResponseDTO> getMemberList() {
+        return memberDAO.findAll().stream().map(MemberResponseDTO::from).toList();
 
     }
 
     @Override
     public void updateMemberInfo(MemberUpdateRequestDTO memberUpdateRequestDTO) {
-        memberDAO.updateMember(MemberUpdateRequestDTO.from(memberUpdateRequestDTO));
+        memberDAO.updateMember(MemberVO.from(memberUpdateRequestDTO));
     }
 
     // 회원 탈퇴

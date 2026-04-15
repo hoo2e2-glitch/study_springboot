@@ -1,6 +1,5 @@
 package com.app.restful.service;
 
-import com.app.restful.domain.dto.MemberDTO;
 import com.app.restful.domain.dto.MemberJoinRequestDTO;
 import com.app.restful.domain.dto.MemberUpdateRequestDTO;
 import com.app.restful.domain.vo.MemberVO;

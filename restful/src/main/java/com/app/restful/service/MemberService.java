@@ -1,15 +1,13 @@
 package com.app.restful.service;
 
 
-import com.app.restful.domain.dto.MemberDTO;
+import com.app.restful.domain.dto.MemberResponseDTO;
 import com.app.restful.domain.dto.MemberJoinRequestDTO;
 import com.app.restful.domain.dto.MemberUpdateRequestDTO;
 import com.app.restful.domain.vo.MemberVO;
-import com.app.restful.domain.vo.PostVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public interface MemberService {
@@ -22,13 +20,13 @@ public interface MemberService {
     public void checkMemberEmailDuplicate(String memberEmail);
 
     // 로그인
-    public MemberDTO login(MemberVO memberVO);
+    public MemberResponseDTO login(MemberVO memberVO);
 
     // 회원 정보 조회
-    public MemberDTO getMemberInfo(Long id);
+    public MemberResponseDTO getMemberInfo(Long id);
 
     // 회원 전체 조회
-    public List<MemberDTO> getMemberList();
+    public List<MemberResponseDTO> getMemberList();
 
     // 회원 수정 - 회원 정보 변경
 
