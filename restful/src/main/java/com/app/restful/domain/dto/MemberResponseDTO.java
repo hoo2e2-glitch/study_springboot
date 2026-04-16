@@ -5,13 +5,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
-
 
 @Component
 @Data
-@Schema(description = "회원정보")
-public class MemberDTO {
+@Schema(description = "회원 정보 응답 dto")
+public class MemberResponseDTO {
 //    required : 테이블에 not null 이거나 parameter값을 넘기면 넣기
 
     @Schema(description = "회원번호", required = true, example = "1")
@@ -22,13 +20,13 @@ public class MemberDTO {
     private String memberName;
 
     // 정적 팩토리 메서드
-    public static MemberDTO from(MemberVO memberVO) {
-        MemberDTO memberDTO = new MemberDTO();
+    public static MemberResponseDTO from(MemberVO memberVO) {
+        MemberResponseDTO memberResponseDTO = new MemberResponseDTO();
 
-        memberDTO.setId(memberVO.getId());
-        memberDTO.setMemberEmail(memberVO.getMemberEmail());
-        memberDTO.setMemberName(memberVO.getMemberName());
-        return memberDTO;
+        memberResponseDTO.setId(memberVO.getId());
+        memberResponseDTO.setMemberEmail(memberVO.getMemberEmail());
+        memberResponseDTO.setMemberName(memberVO.getMemberName());
+        return memberResponseDTO;
     }
 
 }

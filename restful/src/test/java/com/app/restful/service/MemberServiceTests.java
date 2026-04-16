@@ -1,6 +1,5 @@
 package com.app.restful.service;
 
-import com.app.restful.domain.dto.MemberDTO;
 import com.app.restful.domain.dto.MemberJoinRequestDTO;
 import com.app.restful.domain.dto.MemberUpdateRequestDTO;
 import com.app.restful.domain.vo.MemberVO;
@@ -38,7 +37,7 @@ public class MemberServiceTests {
         memberUpdateRequestDTO.setId(22L);
         memberUpdateRequestDTO.setMemberPassword("5555");
         memberUpdateRequestDTO.setMemberName("5555");
-        memberService.updateMemberInfo(memberUpdateRequestDTO);
+        memberService.updateMember(memberUpdateRequestDTO);
     }
 
     @Test
@@ -46,7 +45,7 @@ public class MemberServiceTests {
         MemberVO memberVO = new MemberVO();
 
         memberVO.setId(22L);
-        memberService.deleteMemberInfo(memberVO.getId());
+        memberService.withdraw(memberVO.getId());
     }
 }
 

@@ -1,4 +1,5 @@
-//1. Query(원하는 데이터 조회)
+package com.app.controller.domain.vo;
+//1. Query(원하는 데이터 조회) - db
 //2. VO 또는 DTO를 설계
 //3. Config 설정
 //4. mapper.xml 정의
@@ -24,9 +25,3 @@
 //* 적절한 Exception throw(Service단)
 //* 적절한 Optional(Repository단)
 //* 적절한 DTO를 설계
-
-//PostAPI와 MemberAPI를 모두 일관성있는 응답처리
-//
-//1. 각각 컨트롤러에 맞는 상태코드
-//2. 각각에 알맞는 메세지 또는 데이터 응답처리
-

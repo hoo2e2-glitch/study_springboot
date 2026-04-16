@@ -26,7 +26,6 @@ import java.util.Optional;
 public class PostController {
 
     private final PostMapper postMapper;
-    private final MemberMapper memberMapper;
 
     // 메인서비스
     @GetMapping("list")
@@ -55,6 +54,13 @@ public class PostController {
     public void goToPostsWrite() {;}
 
 
+
+    //- 게시글 목록 조회 서비스
+    //- 게시글 상세보기 조회 서비스
+    //- 게시글 작성 서비스
+    //- 게시글 수정 서비스
+    //- 게시글 삭제 서비스
+    //- 게시글 삭제(탈퇴시) 서비스
 
     }
 

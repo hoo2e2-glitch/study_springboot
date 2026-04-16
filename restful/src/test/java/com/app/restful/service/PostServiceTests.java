@@ -1,19 +1,16 @@
 package com.app.restful.service;
 
-import com.app.restful.domain.dto.MemberJoinRequestDTO;
-import com.app.restful.domain.dto.MemberUpdateRequestDTO;
+import com.app.restful.domain.dto.PostInsertRequestDTO;
 import com.app.restful.domain.dto.PostDTO;
-import com.app.restful.domain.vo.MemberVO;
+import com.app.restful.domain.dto.PostUpdateRequestDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Slf4j
 @SpringBootTest
+//9. Test(단위 테스트)
 public class PostServiceTests {
 
     @Autowired
@@ -21,6 +18,7 @@ public class PostServiceTests {
     @Autowired
     private PostDTO postDTO;
 
+    //- 게시글 목록 조회 서비스
     @Test
     public void selectAllTest(){
 //        PostDTO postDTO = new PostDTO();
@@ -32,8 +30,44 @@ public class PostServiceTests {
 //        postDTO.setMemberName("kimmy");
 //        postDTO.setMemberEmail("kim123@gmail.com");
 
-        postService.findPost().forEach(System.out::println);
+        postService.getPostList("");
+        log.info("{}",postService.getPostList(""));
+    }
+    //- 게시글 상세보기 조회 서비스
+    @Test
+    public void selectByIdTest(){
+        log.info("{}",postService.getPostDetail(4L));
+        postService.getPostDetail(4L);
+    }
+    //- 게시글 작성 서비스
+    @Test
+    public void writePostTest(){
+        PostInsertRequestDTO postInsertRequestDTO = new PostInsertRequestDTO();
 
+        postInsertRequestDTO.setPostTitle("신제목5");
+        postInsertRequestDTO.setPostContent("신내용5");
+
+        postService.writePost(postInsertRequestDTO,1L);
+    }
+    //- 게시글 수정 서비스
+    @Test
+    public void updatePostTest(){
+        PostUpdateRequestDTO postUpdateRequestDTO = new PostUpdateRequestDTO();
+
+        postUpdateRequestDTO.setPostTitle("제제");
+        postUpdateRequestDTO.setPostContent("신신");
+
+        postService.modifyPost(postUpdateRequestDTO,1L);
+    }
+    //- 게시글 삭제 서비스
+    @Test
+    public void deletePostTest(){
+        postService.remove(4L);
+    }
+    //- 게시글 삭제(탈퇴시) 서비스
+    @Test
+    public void deleteByIdTest(){
+        postService.deleteById(1L);
     }
 
 }

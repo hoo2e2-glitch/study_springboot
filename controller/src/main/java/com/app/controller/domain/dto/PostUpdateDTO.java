@@ -2,19 +2,13 @@ package com.app.controller.domain.dto;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
-import java.io.Serializable;
 @Component
 @Data
 //2. VO 또는 DTO를 설계
-public class PostDTO {
+public class PostUpdateDTO {
 
     private Long id;
     private String postTitle;
     private String postContent;
-    private Long memberId;
-    private Long postReadCount;
-    private String memberEmail;
-    private String memberName;
 }
