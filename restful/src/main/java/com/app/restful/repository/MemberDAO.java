@@ -14,7 +14,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberDAO {
 
-
     private final MemberMapper memberMapper;
 
     // 회원 추가
@@ -22,31 +21,31 @@ public class MemberDAO {
         memberMapper.insert(memberVO);
     }
 
-    // 회원 이메일 유무 조회
+    // 회원 이메일 유무 검사
     public int existMemberEmail(String memberEmail) {
         return memberMapper.existMemberEmail(memberEmail);
     }
 
-    //단일 조회(id)
-    public Optional<MemberVO> findById(Long id) {
-        return Optional.ofNullable(memberMapper.selectById(id));
-    }
-    // 단일 조회(email/password)
-    public Optional<MemberVO> findByEmail(MemberVO memberVO) {
-        return Optional.ofNullable(memberMapper.select(memberVO));
-    }
-    // 전체 조회
+    // 회원 전체 조회
     public List<MemberVO> findAll() {
         return memberMapper.selectAll();
     }
+    // 회원 단일 조회(id)
+    public Optional<MemberVO> findById(Long id) {
+        return Optional.ofNullable(memberMapper.selectById(id));
+    }
+    // 회원 단일 조회(email/password)
+    public Optional<MemberVO> findByMemberEmailAndMemberPassword(MemberVO memberVO) {
+        return Optional.ofNullable(memberMapper.selectByMemberEmailAndMemberPassword(memberVO));
+    }
     // 회원정보 수정
-    public void updateMember(MemberVO memberVO) {
+    public void update(MemberVO memberVO) {
         memberMapper.update(memberVO);
     }
     // 수정 - 비밀번호
 
     // 삭제
-    public void deleteMember(Long id) {
+    public void delete(Long id) {
         memberMapper.delete(id);
     }
 

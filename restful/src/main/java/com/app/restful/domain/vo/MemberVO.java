@@ -11,14 +11,14 @@ import java.io.Serializable;
 @Component
 @Data
 // 다른서버와 소통 이뤄지는 vo
-public class MemberVO {
+public class MemberVO implements Serializable {
 
     private Long id;
     private String memberEmail;
     private String memberPassword;
     private String memberName;
 
-    // 정적
+    // 정적 팩토리 메서드
     // 다형성
     public static MemberVO from(MemberJoinRequestDTO memberJoinRequestDTO) {
         MemberVO memberVO = new MemberVO();

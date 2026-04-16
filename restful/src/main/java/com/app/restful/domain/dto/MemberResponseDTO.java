@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-@Schema(description = "회원정보")
+@Schema(description = "회원 정보 응답 dto")
 public class MemberResponseDTO {
 //    required : 테이블에 not null 이거나 parameter값을 넘기면 넣기
 

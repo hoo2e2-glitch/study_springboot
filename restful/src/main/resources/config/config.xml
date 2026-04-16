@@ -12,7 +12,7 @@
       <typeAlias type="com.app.restful.domain.vo.PostVO" alias="PostVO"></typeAlias>
 
         <!--dto-->
-        <typeAlias type="com.app.restful.domain.dto.PostListResponseDTO" alias="PostListResponseDTO"></typeAlias>
+        <typeAlias type="com.app.restful.domain.dto.PostDTO" alias="PostDTO"></typeAlias>
 
     </typeAliases>
 </configuration>

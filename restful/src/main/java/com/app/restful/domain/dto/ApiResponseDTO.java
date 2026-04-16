@@ -1,0 +1,25 @@
+package com.app.restful.domain.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor @AllArgsConstructor
+@Schema(description = "서버 응답 dto")
+//  api ->무조건 ApiResponseDTO 리턴하겠다
+public class ApiResponseDTO<T> {
+    @Schema(description = "응답 메세지", example = "조회 성공", required = true)
+    private String message;
+    @Schema(description = "응답 데이터")
+    private T date;
+
+    public static<T> ApiResponseDTO<T> of(String message)  {
+        return new ApiResponseDTO<>(message, null);
+    }
+
+    public static<T> ApiResponseDTO<T> of(String message, T date)  {
+        return new ApiResponseDTO<>(message, date);
+    }
+}

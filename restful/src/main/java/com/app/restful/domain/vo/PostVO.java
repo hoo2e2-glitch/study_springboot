@@ -18,22 +18,20 @@ public class PostVO implements Serializable {
     private Long memberId;
     private Long postReadCount;
 
+    // 정적 팩토리 메서드 / id값으 set 으로
     public static PostVO from(PostInsertRequestDTO postInsertRequestDTO){
-
         PostVO postVO = new PostVO();
+
         postVO.setPostTitle(postInsertRequestDTO.getPostTitle());
         postVO.setPostContent(postInsertRequestDTO.getPostContent());
-        postVO.setMemberId(postInsertRequestDTO.getMemberId());
-        postVO.setPostReadCount(postInsertRequestDTO.getPostReadCount());
         return postVO;
     }
 
     public static PostVO from(PostUpdateRequestDTO postUpdateRequestDTO){
         PostVO postVO = new PostVO();
 
-        postVO.setId(postUpdateRequestDTO.getId());
         postVO.setPostTitle(postUpdateRequestDTO.getPostTitle());
         postVO.setPostContent(postUpdateRequestDTO.getPostContent());
-        return  postVO;
+        return postVO;
     }
 }
