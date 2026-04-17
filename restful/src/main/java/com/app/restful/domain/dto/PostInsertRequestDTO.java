@@ -1,6 +1,5 @@
 package com.app.restful.domain.dto;
 
-import com.app.restful.domain.vo.PostVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.stereotype.Component;

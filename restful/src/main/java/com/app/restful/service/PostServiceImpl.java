@@ -39,10 +39,10 @@ public class PostServiceImpl implements PostService {
 //        if (foundPost.isPresent()) {
 //            return foundPost.get();
 //        }
-//        throw new PostException();
+//        throw new PPostException();
         // handling 배움 4/16일
         return postDAO.getPost(id).orElseThrow(() -> { throw new PostException("게시글을 찾을 수 없습니다", HttpStatus.NOT_FOUND);});
-//        return postDAO.findPostById(id).orElseThrow(PostException::new);
+//        return postDAO.findPostById(id).orElseThrow(PPostException::new);
     }
     //- 게시글 작성 서비스
     public void writePost(PostInsertRequestDTO postInsertRequestDTO, Long memberId) {

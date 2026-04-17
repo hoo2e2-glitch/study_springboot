@@ -65,59 +65,59 @@ public class MemberAPI {
     public ResponseEntity<ApiResponseDTO> join(@RequestBody MemberJoinRequestDTO memberJoinRequestDTO){
         memberService.join(memberJoinRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponseDTO.of("회원 가입 성공"));
-        }
-
-        // 로그인
-        @PostMapping("/login")
-        @Operation(summary = "로그인 서비스", description = "아이디 비밀번호 검증 -> 서비스")
-        @ApiResponse(responseCode = "200", description = "로그인 성공")
-        @ApiResponse(responseCode = "401", description = "로그인 실패")
-        @ApiResponse(responseCode = "401", description = "토큰 없음")
-        @ApiResponse(responseCode = "403", description = "권한 없음")
-        public ResponseEntity<ApiResponseDTO> login(@RequestBody MemberVO memberVO){
-            MemberResponseDTO loginMember = memberService.login(memberVO);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.of("로그인 성공", loginMember));
-        }
-
-        // 수정
-        @PutMapping("/{id}")
-        @Operation(summary = "회원정보 수정 서비스", description = "회원정보 업데이트 서비스")
-        @ApiResponse(responseCode = "200", description = "회원정보 수정 성공")
-        @ApiResponse(responseCode = "400", description = "잘못된 접근")
-        @ApiResponse(responseCode = "401", description = "토큰 없음")
-        @ApiResponse(responseCode = "403", description = "권한 없음")
-        @Parameter(
-                name = "id",
-                description = "회원 번호",
-                required = true,
-                in = ParameterIn.PATH,
-                example = "1",
-                schema = @Schema(type = "number") )// 스키마 타입
-        public ResponseEntity<ApiResponseDTO> updateMember(@RequestBody MemberUpdateRequestDTO memberUpdateRequestDTO, @PathVariable Long id){
-            memberUpdateRequestDTO.setId(id);
-            memberService.updateMember(memberUpdateRequestDTO);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.of("회원 정보 수정 완료"));
-        }
-
-        // 삭제
-        @DeleteMapping("/{id}")
-        @Operation(summary = "회원 탈퇴 서비스", description = "회원아이디를 받아서 회원탈퇴 서비스")
-        @ApiResponse(responseCode = "204", description = "회원 탈퇴 성공")
-        @ApiResponse(responseCode = "401", description = "토큰 없음")
-        @ApiResponse(responseCode = "403", description = "권한 없음")
-        @Parameter(
-                name = "id",
-                description = "회원 번호",
-                required = true,
-                in = ParameterIn.PATH,
-                example = "1",
-                schema = @Schema(type = "number") )// 스키마 타입
-        public ResponseEntity<ApiResponseDTO> withdraw(@RequestBody Long id){
-            memberService.withdraw(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponseDTO.of("회원 탈퇴 완료"));
-        }
-
     }
+
+    // 로그인
+    @PostMapping("/login")
+    @Operation(summary = "로그인 서비스", description = "아이디 비밀번호 검증 -> 서비스")
+    @ApiResponse(responseCode = "200", description = "로그인 성공")
+    @ApiResponse(responseCode = "401", description = "로그인 실패")
+    @ApiResponse(responseCode = "401", description = "토큰 없음")
+    @ApiResponse(responseCode = "403", description = "권한 없음")
+    public ResponseEntity<ApiResponseDTO> login(@RequestBody MemberVO memberVO){
+        MemberResponseDTO loginMember = memberService.login(memberVO);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.of("로그인 성공", loginMember));
+    }
+
+    // 수정
+    @PutMapping("/{id}")
+    @Operation(summary = "회원정보 수정 서비스", description = "회원정보 업데이트 서비스")
+    @ApiResponse(responseCode = "200", description = "회원정보 수정 성공")
+    @ApiResponse(responseCode = "400", description = "잘못된 접근")
+    @ApiResponse(responseCode = "401", description = "토큰 없음")
+    @ApiResponse(responseCode = "403", description = "권한 없음")
+    @Parameter(
+            name = "id",
+            description = "회원 번호",
+            required = true,
+            in = ParameterIn.PATH,
+            example = "1",
+            schema = @Schema(type = "number") )// 스키마 타입
+    public ResponseEntity<ApiResponseDTO> updateMember(@RequestBody MemberUpdateRequestDTO memberUpdateRequestDTO, @PathVariable Long id){
+        memberUpdateRequestDTO.setId(id);
+        memberService.updateMember(memberUpdateRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.of("회원 정보 수정 완료"));
+    }
+
+    // 삭제
+    @DeleteMapping("/{id}")
+    @Operation(summary = "회원 탈퇴 서비스", description = "회원아이디를 받아서 회원탈퇴 서비스")
+    @ApiResponse(responseCode = "200", description = "회원 탈퇴 성공")
+    @ApiResponse(responseCode = "401", description = "토큰 없음")
+    @ApiResponse(responseCode = "403", description = "권한 없음")
+    @Parameter(
+            name = "id",
+            description = "회원 번호",
+            required = true,
+            in = ParameterIn.PATH,
+            example = "1",
+            schema = @Schema(type = "number") )// 스키마 타입
+    public ResponseEntity<ApiResponseDTO> withdraw(@PathVariable Long id){
+        memberService.withdraw(id);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.of("회원 탈퇴 완료"));
+    }
+
+}
 
 
 

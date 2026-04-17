@@ -99,7 +99,7 @@ public class PostAPI {
     //- 게시글 삭제 서비스
     @DeleteMapping("/{id}")
     @Operation(summary = "게시글 삭제", description = "게시글 삭제 후 보여주는 서비스" )
-    @ApiResponse(responseCode = "204", description = "게시글 삭제 완료")
+    @ApiResponse(responseCode = "200", description = "게시글 삭제 완료")
     @ApiResponse(responseCode = "404", description = "게시글 없음")
     @Parameter(
             name = "id",
@@ -110,7 +110,7 @@ public class PostAPI {
     )
     public ResponseEntity<ApiResponseDTO> deletePost(@PathVariable Long id){
         postService.remove(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponseDTO.of("게시글 삭제"));
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.of("게시글 삭제"));
     }
 
     // {id} / {memberId} -> 같은 경로로 인식 // 확실하게 분리해줘야함
