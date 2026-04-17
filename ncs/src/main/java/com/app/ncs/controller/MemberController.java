@@ -23,7 +23,7 @@ import java.util.Optional;
 public class MemberController {
 
     private final MemberMapper memberMapper;
-    private final HttpSession httpSession;
+    private final HttpSession session;
 
     @GetMapping("join")
     public void goToJoin(MemberVO memberVO) {;}
@@ -39,14 +39,19 @@ public class MemberController {
     public void goToLogin(){;}
 
     @PostMapping("login")
-    public void login(MemberVO memberVO, RedirectAttributes redirectAttributes){
-        MemberVO foundMember = httpSession.getAttribute();
-        if(foundMember.){
-            httpSession.setAttribute("member", foundMember);
-            redirectAttributes.addFlashAttribute("memberVO", foundMember);
+    public RedirectView login(MemberVO memberVO, RedirectAttributes redirectAttributes) {
+
+        Optional<MemberVO> found = memberMapper.select(memberVO);
+        if(found.isPresent()) {
+            session.setAttribute("member", found.get());
             return new RedirectView("/members/my-page");
         }
 
+
+        redirectAttributes.addFlashAttribute("isLogin", false);
+        return new RedirectView("/members/login");
+
+    }
 
     }
     @GetMapping("my-page")
@@ -57,7 +62,7 @@ public class MemberController {
 
     @PostMapping("update")
     public RedirectView update(Model model){
-        MemberVO memberVO = (MemberVO) httpSession.getAttribute("member");
+        MemberVO memberVO = (MemberVO) session.getAttribute("member");
         memberVO.setId(memberVO.getId());
         memberMapper.update(memberVO);
         return new RedirectView("/members/my-page");
@@ -66,13 +71,13 @@ public class MemberController {
 
     @PostMapping("logout")
     public RedirectView logout(){
-        httpSession.invalidate();
+        session.invalidate();
         return new RedirectView("/members/login");
     }
 
     @DeleteMapping("join")
     public RedirectView withdraw(){
-        MemberVO memberVO = (MemberVO) httpSession.getAttribute("member");
+        MemberVO memberVO = (MemberVO) session.getAttribute("member");
         memberVO.setId(memberVO.getId());
         memberMapper.update(memberVO);
         return new RedirectView("/members/join");
