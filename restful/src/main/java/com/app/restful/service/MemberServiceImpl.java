@@ -4,7 +4,7 @@ import com.app.restful.domain.dto.MemberResponseDTO;
 import com.app.restful.domain.dto.MemberJoinRequestDTO;
 import com.app.restful.domain.dto.MemberUpdateRequestDTO;
 import com.app.restful.domain.vo.MemberVO;
-import com.app.restful.excetion.MemberException;
+import com.app.restful.exception.MemberException;
 import com.app.restful.repository.MemberDAO;
 import com.app.restful.repository.PostDAO;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,8 @@
 package com.app.restful.controller;
 
 import com.app.restful.domain.dto.ApiResponseDTO;
-import com.app.restful.excetion.MemberException;
-import com.app.restful.excetion.PostException;
+import com.app.restful.exception.MemberException;
+import com.app.restful.exception.PostException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

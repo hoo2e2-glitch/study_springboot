@@ -1,4 +1,4 @@
-package com.app.restful.excetion;
+package com.app.restful.exception;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

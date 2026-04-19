@@ -4,7 +4,7 @@ import com.app.restful.domain.dto.PostDTO;
 import com.app.restful.domain.dto.PostInsertRequestDTO;
 import com.app.restful.domain.dto.PostUpdateRequestDTO;
 import com.app.restful.domain.vo.PostVO;
-import com.app.restful.excetion.PostException;
+import com.app.restful.exception.PostException;
 import com.app.restful.repository.PostDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

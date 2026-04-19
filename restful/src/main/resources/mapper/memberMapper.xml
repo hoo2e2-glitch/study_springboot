@@ -21,7 +21,7 @@
         SELECT ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME
         FROM TBL_MEMBER
     </select>
-    <!-- -->
+    <!-- id로 조회-->
     <select id="selectById" parameterType="Long" resultType="MemberVO">
         SELECT ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME
         FROM TBL_MEMBER
