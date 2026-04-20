@@ -3,9 +3,9 @@
 //3. Config 설정
 //4. mapper.xml 정의
 //5. Mapper 인터페이스(xml의 id와 메서드의 이름이 동일)
-//6. DAO(단일객체는 Optional, 이름 준수)
+//6. DAO(단일객체는 <Optional>, 이름 준수)
 //7. Service 인터페이스(확장성)
-//8. Service Implements(트랜잭션, 예외처리, 서비스이름이 들어나도록)
+//8. Service Implements(트랜잭션, throw처리, 예외처리, 서비스이름이 들어나도록)
 //9. Test(단위 테스트)
 //10. API(Rest)
 
@@ -30,3 +30,12 @@
 //1. 각각 컨트롤러에 맞는 상태코드
 //2. 각각에 알맞는 메세지 또는 데이터 응답처리
 
+// api 설계원칙
+// Swagger 문서 정의
+// 파라미터
+// 알맞는 response dto
+// schema
+
+// 정적팩토리 메서드 -> 없어도 됨
+
+// 회원검증 추가제작 / selectkey 사용 / exception / 다 처리

@@ -37,4 +37,5 @@ public class MemberVO implements Serializable {
         memberVO.setMemberName(memberUpdateRequestDTO.getMemberName());
         return memberVO;
     }
+
 }

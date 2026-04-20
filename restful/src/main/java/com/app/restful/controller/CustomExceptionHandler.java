@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {
+
     // 여기서는 분기처리 불가능
     @ExceptionHandler(PostException.class)
     public ResponseEntity<ApiResponseDTO> postException(PostException e) {
