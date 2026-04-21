@@ -3,7 +3,7 @@
     {
       "name": "spring.datasource.hikari",
       "type": "com.zaxxer.hikari.HikariConfig",
-      "sourceType": "com.app.ncs.config.MyBatisConfiguration",
+      "sourceType": "com.app.ncs.config.MyBatisConfig",
       "sourceMethod": "hikariConfig()"
     },
     {
@@ -51,11 +51,6 @@
       "sourceType": "com.zaxxer.hikari.HikariConfig"
     },
     {
-      "name": "spring.datasource.hikari.credentials",
-      "type": "com.zaxxer.hikari.util.Credentials",
-      "sourceType": "com.zaxxer.hikari.HikariConfig"
-    },
-    {
       "name": "spring.datasource.hikari.data-source-class-name",
       "type": "java.lang.String",
       "sourceType": "com.zaxxer.hikari.HikariConfig"
@@ -73,11 +68,6 @@
     {
       "name": "spring.datasource.hikari.driver-class-name",
       "type": "java.lang.String",
-      "sourceType": "com.zaxxer.hikari.HikariConfig"
-    },
-    {
-      "name": "spring.datasource.hikari.exception-override",
-      "type": "com.zaxxer.hikari.SQLExceptionOverride",
       "sourceType": "com.zaxxer.hikari.HikariConfig"
     },
     {
@@ -186,8 +176,5 @@
       "sourceType": "com.zaxxer.hikari.HikariConfig"
     }
   ],
-  "hints": [],
-  "ignored": {
-    "properties": []
-  }
+  "hints": []
 }

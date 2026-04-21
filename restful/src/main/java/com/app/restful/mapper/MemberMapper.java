@@ -20,7 +20,6 @@ public interface MemberMapper { // 멤버할일들
     public MemberVO selectByMemberEmailAndMemberPassword(MemberVO memberVO);
     // 수정
     public void update(MemberVO memberVO);
-    // 수정 - 비밀번호
     // 삭제
     public void delete(Long id);
 }

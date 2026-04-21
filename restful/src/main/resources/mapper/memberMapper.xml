@@ -59,7 +59,6 @@
         DELETE FROM TBL_MEMBER
         WHERE ID = #{id}
     </delete>
-
 </mapper>
 
         <!--    추가-->

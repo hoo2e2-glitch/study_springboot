@@ -1,26 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.ncs.mapper.MemberMapper">
-
-    <insert id="insert" parameterType="MemberVO" >
+    
+    <!--// 회원가입 - 추가-->
+    <insert id="insert" parameterType="MemberVO">
+        <selectKey keyProperty="id" order="BEFORE" resultType="Long">
+            SELECT SEQ_MEMBER.NEXTVAL FROM DUAL
+        </selectKey>
         INSERT INTO TBL_MEMBER(ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME)
-        VALUES (SEQ_MEMBER.NEXTVAL, #{memberEmail}, #{memberPassword}, #{memberName})
+        VALUES (#{id}, #{memberEmail}, #{memberPassword}, #{memberName})
     </insert>
 
-    <select id="select" resultType="MemberVO">
+    <!--// 로그인 - 조회-->
+    <select id="selectByMemberEmailAndPassword" resultType="MemberVO" parameterType="MemberVO">
+        SELECT ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME
+        FROM TBL_MEMBER
+        WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PASSWORD = #{memberPassword}
+    </select>
+
+    <!--// 회원 전체 조회 -->
+    <select id="selectAll" resultType="MemberVO">
+        SELECT ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME
+        FROM TBL_MEMBER
+    </select>
+    
+    <!--// 회원 정보 조회-->
+    <select id="selectById" parameterType="Long" resultType="MemberVO">
         SELECT ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME
         FROM TBL_MEMBER
         WHERE ID = #{id}
     </select>
 
-    <update id="update" parameterType="MemberVO" >
+    <!--// 이메일 중복 확인-->
+    <select id="existsByMemberEmail" resultType="int" parameterType="String">
+        SELECT COUNT(*)
+        FROM TBL_MEMBER
+        WHERE MEMBER_EMAIL = #{memberEmail}
+    </select>
+
+    <!--// 회원 정보 변경-->
+    <update id="update" parameterType="MemberVO">
         UPDATE TBL_MEMBER
-        SET MEMBER_EMAIL = #{memberEmail}, MEMBER_PASSWORD = #{memberPassword}, MEMBER_NAME = #{memberName}
+        SET MEMBER_PASSWORD = #{memberPassword}, MEMBER_NAME = #{memberName}
         WHERE ID = #{id}
     </update>
 
+    <!--// 회원 탈퇴-->
     <delete id="delete" parameterType="Long">
         DELETE FROM TBL_MEMBER
         WHERE ID = #{id}
     </delete>
+
 </mapper>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,7 +8,7 @@
     <title>수정</title>
 </head>
 <body>
-<form action="/members/login" method="POST"  >
+<form action="/members/login" method="POST" >
     <input type="text" name="memberEmail" value="memberEmail" placeholder="이메일">
     <input type="password" name="memberPassword" value="memberPassword" placeholder="비밀번호">
     <input type="text" name="memberName" value="memberName" placeholder="이름">
@@ -23,7 +23,14 @@
     const form = document.querySelector('form');
 
 
-    if()
+    if(isLogin == true){
+        inputs.forEach(input => {
+            buttons.addEventListener('click', e => {
+                e.preventDefault();
+            })
+            form.submit();
+        })
+    }
 
 
 

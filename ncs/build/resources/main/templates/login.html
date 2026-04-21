@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -25,8 +25,14 @@
         alert('id pw 없음')
     }
 
-    if()
-
+    if(isLogin == true){
+        inputs.forEach(input => {
+            buttons.addEventListener('click', e => {
+                e.preventDefault();
+            })
+            form.submit();
+        })
+    }
 
 
 </script>

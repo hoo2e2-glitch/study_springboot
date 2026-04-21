@@ -12,3 +12,4 @@ import java.lang.annotation.Target;
 // 횡단 + 종단 을 합치려면 상속으로 / proxy 객체를 만들어서 upcasting
 public @interface LogStatus {;}
 
+

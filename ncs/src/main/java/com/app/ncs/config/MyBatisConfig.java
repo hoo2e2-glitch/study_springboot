@@ -15,9 +15,9 @@ import java.io.IOException;
 
 @Configuration
 @RequiredArgsConstructor
-public class MyBatisConfiguration {
+public class MyBatisConfig {
 
-    //    applicationContext를 통해 resoruces의 경로를 가져온다.
+    //    applicationContext를 통해 resource의 경로를 가져온다.
     private final ApplicationContext applicationContext;
 
     //    yml 파일을 connection 정보를 가져오기 위한 작업

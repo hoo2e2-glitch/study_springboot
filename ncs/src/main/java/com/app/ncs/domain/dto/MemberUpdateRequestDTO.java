@@ -1,0 +1,21 @@
+package com.app.ncs.domain.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
+@Data
+@Component
+@Schema(description = "회원 정보 수정 DTO")
+// RequestDTO = 사용자(클라이언트)가 서버로 보내는 값
+// RequestDTO = 요청 / 들어오는 데이터
+//사용자가 보냄: 이메일, 비밀번호, 이름 / email, password, name
+public class MemberUpdateRequestDTO {
+
+    @Schema(description = "회원번호", required = true, example = "1")
+    private Long id;
+    @Schema(description = "비밀번호", required = true, example = "1234")
+    private String memberPassword;
+    @Schema(description = "이름", example = "김이박")
+    private String memberName;
+}
