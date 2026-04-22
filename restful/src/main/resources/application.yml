@@ -31,7 +31,7 @@ spring:
       allow-credentials: "true" # 쿠키 사용 허용
 
 api:
-  service-key: "REMOVED_SECRET"
+  service-key: ${API_SERVICE_KEY}
 
   base-url: "https://apis.data.go.kr/B551011/KorPetTourService2"
   area-based-list: "/areaBasedList2"
