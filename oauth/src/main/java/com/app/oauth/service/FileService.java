@@ -1,0 +1,20 @@
+package com.app.oauth.service;
+
+
+import com.app.oauth.domain.dto.response.ApiResponseDTO;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+
+public interface FileService {
+
+    // 파일 1개 업로드
+    public ApiResponseDTO uploadFile(MultipartFile uploadFile);
+
+    // 파일 여러개 업로드
+    public ApiResponseDTO uploadFiles(List<MultipartFile> uploadFiles);
+
+    // 절대 경로 숨기는
+    public byte[] getDisplayPath(String fileName);
+
+}

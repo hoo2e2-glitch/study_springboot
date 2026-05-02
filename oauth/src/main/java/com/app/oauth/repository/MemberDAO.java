@@ -1,5 +1,6 @@
 package com.app.oauth.repository;
 
+import com.app.oauth.domain.dto.MemberDTO;
 import com.app.oauth.domain.vo.MemberVO;
 import com.app.oauth.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,24 +16,35 @@ public class MemberDAO {
 
     public final MemberMapper memberMapper;
 
-
+    // 회원추가
     public void save(MemberVO memberVO) {
         memberMapper.insert(memberVO);
     }
 
-    public Optional<MemberVO> findById(Long id){
-//        oauthMemberMapper.selectById(id);
-       return Optional.ofNullable(memberMapper.selectById(id));
+    // 회원조회 id
+    public Optional<MemberDTO> findByMemberId(Long id){
+        return Optional.ofNullable(memberMapper.select(id));
     }
 
-    public Optional<MemberVO> findByMemberEmail(String memberEmail){
-        return Optional.ofNullable(memberMapper.selectByMemberEmail(memberEmail));
+    // 회원 조회 email
+    public Optional<MemberDTO> findByMemberEmail(MemberDTO memberDTO){
+        return Optional.ofNullable(memberMapper.selectByMemberEmailAndSocialMemberProvider(memberDTO));
     }
 
+    // 회원가입 여부 email
+    public boolean existByEmail(MemberDTO memberDTO){
+        return  memberMapper.existMemberByEmailAndSocialMemberProvider(memberDTO);
+    }
+    // 회원 추가
     public void update(MemberVO memberVO) {
         memberMapper.update(memberVO);
     }
 
+    // 회원 썸네일 변경
+    public void updatePicture(MemberVO memberVO) {
+        memberMapper.updatePicture(memberVO);
+    }
+    // 회원 삭제
     public void delete(Long id) {
         memberMapper.delete(id);
     }

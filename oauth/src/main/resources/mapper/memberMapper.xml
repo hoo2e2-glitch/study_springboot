@@ -2,57 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.oauth.mapper.MemberMapper">
 
+    <!--dto-->
     <insert id="insert" parameterType="MemberVO">
         <selectKey keyProperty="id" order="BEFORE" resultType="Long">
-            SELECT SEQ_OAUTH_MEMBER.NEXTVAL FROM DUAL
+            SELECT SEQ_MEMBER.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO TBL_OAUTH_MEMBER
-        VALUES (
-        #{id},
-        #{memberEmail},
-            <choose>
-                <when test="memberPassword != null">#{memberPassword}</when>
-                <otherwise>NULL</otherwise>
-            </choose>,
-            <choose>
-                <when test="memberPicture != null">#{memberPicture}</when>
-                <otherwise>DEFAULT</otherwise>
-            </choose>,
-            #{memberName},
-            #{memberNickname},
-            <choose>
-                <when test="memberProvider != null">#{memberProvider}</when>
-                <otherwise>DEFAULT</otherwise>
-            </choose>
-            )
+        INSERT INTO TBL_MEMBER
+        VALUES (#{id}, #{memberEmail}, #{memberPassword}, #{memberPicture}, #{memberName}, #{memberNickname})
     </insert>
 
-<!--    <select id="selectAll" resultType="MemberVO">-->
-<!--        SELECT ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_PICTURE, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_PROVIDER-->
-<!--        FROM TBL_OAUTH_MEMBER-->
+    <select id="select" parameterType="Long" resultType="MemberDTO">
+        SELECT
+            TBM.ID, TBM.MEMBER_EMAIL, TBM.MEMBER_PASSWORD, TBM.MEMBER_PICTURE, TBM.MEMBER_NAME, TBM.MEMBER_NICKNAME,
+            TSSM.MEMBER_ID, TSSM.SOCIAL_MEMBER_PROVIDER_ID, TSSM.SOCIAL_MEMBER_PROVIDER
+        FROM TBL_MEMBER TBM
+            JOIN TBL_SOCIAL_MEMBER TSSM
+            ON TBM.ID = TSSM.MEMBER_ID
+        WHERE TBM.ID = #{id}
+    </select>
+
+    <select id="selectByMemberEmailAndSocialMemberProvider" parameterType="MemberDTO" resultType="MemberDTO">
+        SELECT
+            TBM.ID, TBM.MEMBER_EMAIL, TBM.MEMBER_PASSWORD, TBM.MEMBER_PICTURE, TBM.MEMBER_NAME, TBM.MEMBER_NICKNAME,
+            TSSM.MEMBER_ID, TSSM.SOCIAL_MEMBER_PROVIDER_ID, TSSM.SOCIAL_MEMBER_PROVIDER
+        FROM TBL_MEMBER TBM
+        JOIN TBL_SOCIAL_MEMBER TSSM
+        ON TBM.ID = TSSM.MEMBER_ID
+        WHERE TBM.MEMBER_EMAIL = #{memberEmail}
+            AND TSSM.SOCIAL_MEMBER_PROVIDER = #{socialMemberProvider}
+    </select>
+
+<!--    <select id="selectByMemberEmail" parameterType="String" resultType="MemberVO">-->
+<!--        SELECT ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_PICTURE, MEMBER_NAME, MEMBER_NICKNAME-->
+<!--        FROM TBL_MEMBER-->
+<!--        WHERE MEMBER_EMAIL = #{memberEmail}-->
 <!--    </select>-->
 
-    <select id="selectById" parameterType="Long" resultType="MemberVO">
-        SELECT ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_PICTURE, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_PROVIDER
-        FROM TBL_OAUTH_MEMBER
-        WHERE ID = #{id}
+    <select id="existMemberByEmailAndSocialMemberProvider" parameterType="MemberDTO" resultType="_boolean">
+        SELECT
+            CASE
+                WHEN COUNT(TBM.ID) > 0
+                THEN 1
+                ELSE 0
+            END
+        FROM TBL_MEMBER TBM
+        JOIN TBL_SOCIAL_MEMBER TSSM
+        ON TBM.ID = TSSM.MEMBER_ID
+        WHERE TBM.MEMBER_EMAIL = #{memberEmail}
+            AND TSSM.SOCIAL_MEMBER_PROVIDER = #{socialMemberProvider}
     </select>
 
-    <select id="selectByMemberEmail" parameterType="String" resultType="MemberVO">
-        SELECT ID, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_PICTURE, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_PROVIDER
-        FROM TBL_OAUTH_MEMBER
-        WHERE MEMBER_EMAIL = #{memberEmail}
-    </select>
+    <update id="update" parameterType="MemberVO"></update>
 
-    <update id="update" parameterType="MemberVO">
-        UPDATE TBL_OAUTH_MEMBER
-        SET MEMBER_NICKNAME = #{memberNickname}
+    <update id="updatePicture" parameterType="MemberVO">
+        UPDATE TBL_MEMBER
+        SET MEMBER_PICTURE = #{memberPicture}
         WHERE ID = #{id}
     </update>
 
-    <delete id="delete" parameterType="Long">
-        DELETE FROM TBL_OAUTH_MEMBER
-        WHERE ID = #{id}
-    </delete>
-
+    <delete id="delete" parameterType="Long"></delete>
 </mapper>
